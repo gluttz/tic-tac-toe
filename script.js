@@ -19,7 +19,7 @@ const Gameboard = (function(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const displayController = (function(){
-    
+
     //Cache DOM / EventListeners
     const nodeList = document.querySelectorAll('.tile');
     const form = document.querySelector('.inputForm');
@@ -78,7 +78,8 @@ const displayController = (function(){
     };
 
     const onAIMove = () => {
-        display.updateBoard(nodeList)
+        setTimeout(() => display.updateBoard(nodeList), 500);
+        
         listen();
     }
 
