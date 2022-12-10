@@ -9,7 +9,15 @@
     box-sizing: border-box;
 }
 html{
-    font-family: roboto;
+    --rubyRed: #5a0209;
+    --slateGray: #28464B;
+    --ming: #326771;
+    --blueMunsell: #2C8C99;
+    --turqoise: #42D9C8;
+
+    font-family: roboto, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    
 }
 #container{
     display: grid;
@@ -19,11 +27,13 @@ html{
     height: 100vh;
     width: 100vw;
 }
+
 #gameboard-container{
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--slateGray);
 }
 #game-box{
     width: 640px;
@@ -32,7 +42,7 @@ html{
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 10px;
-    background-color: grey;
+    background-color: var(--slateGray);
 }
 .tile{
     display: flex;
@@ -41,10 +51,29 @@ html{
     justify-content: center;
     align-items: center;
     font-size: 180px;
-    color: black;
-    background: rgb(70, 70, 70);
+    color: var(--rubyRed);
+    background: var(--blueMunsell);
+    opacity: .8;
+    border-radius: 5px;
+}
+
+.tile:hover{
+    opacity: 1;
 }
 div.game-over{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: none;
+    justify-content: center;
+    align-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    gap: 50px;
+    z-index: 9;
+}
+div.game-draw{
     position: absolute;
     top: 0px;
     bottom: 0px;
@@ -63,11 +92,70 @@ div.game-over{
     grid-template-columns: 1fr 3fr 1fr;
     align-items: center;
     justify-items: center;
+    background-color: var(--ming);
+    padding: 20px 50px;
+    box-shadow: 0 0 10px black;
+    z-index: 1;
+}
+#header-container h1{
+    color: black;
+    font-size: 2.3rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px black;
+    letter-spacing: 5px;
+}
+#form{
+    color: black;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px black;
+    letter-spacing: 3px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 5px;
+}
+#form input[type=text]{
+    background-color: var(--turqoise);
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 1rem;
+    padding: 5px 15px;
+    opacity: .8;
+    box-shadow: 0 0 10px black;
+}
+#form input[type=text]:hover{
+    opacity: 1;
+}
+.AI{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.playerOneContainer{
+    grid-area: 1 / 2 / 2 / 3;
 }
 .playerTwoContainer{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    grid-area: ;
+}
+
+.buttons button{
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background: var(--rubyRed);
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px black;
+    opacity: .8;
+    box-shadow: 0 0 10px black;
+}
+.buttons button:hover{
+    opacity: 1;
 }
 #message{
     color: rgb(170, 170, 170);
@@ -78,13 +166,16 @@ div.game-over{
 #playerTwoCheck{
     appearance: none;
     position: relative;
-    background-color: var(--turqoise);
+    background-color: var(--rubyRed);
     width: 100px;
     height: 56px;
     border-radius: 2rem;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 50%);
     opacity: 0.8;
     transform: scale(.5);
+  }
+  #playerTwoCheck:checked{
+    background-color: var(--turqoise);
   }
   #playerTwoCheck:hover{
     opacity: 1;
@@ -94,7 +185,7 @@ div.game-over{
     position: absolute;
     height: 56px;
     width: 56px;
-    background-color: rgb(165, 56, 56);
+    background-color: white;
     border-radius: 2rem;
     box-shadow:0 2px 10px rgba(0, 0, 0, 50%);
     transform: scale(.7);
@@ -102,13 +193,9 @@ div.game-over{
     left: 0;
   }
   #playerTwoCheck:checked::before{
-    background-color: rgb(69, 170, 69);
     left: 44px;
   }
 
- /* .show{
-    visibility: initial;
-  } */
   .hide{
     visibility: hidden;
 }
